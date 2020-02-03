@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= t('app.name')
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = favicon_link_tag 'logo1.png', rel: 'apple-touch-icon'
+  %body
+    #wrapper
+      = render 'application/sidebar'
+      = render  'application/header'
+      #page-content-wrapper
+        .container-fluid
+          =render 'flash_messages'
+          -if content_for? :error_messages
+            = yield :error_messages
+          = yield
